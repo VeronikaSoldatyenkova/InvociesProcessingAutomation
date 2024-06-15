@@ -1,0 +1,34 @@
+<!-- automation_app/templates/automation_app/logs.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automation Logs</title>
+         {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Automation Logs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Automation</th>
+                <th>User</th>
+                <th>Execution Time</th>
+                <th>Status</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.automation.name }}</td>
+                <td>{{ log.user.username }}</td>
+                <td>{{ log.execution_time }}</td>
+                <td>{{ log.status }}</td>
+                <td>{{ log.log_details }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

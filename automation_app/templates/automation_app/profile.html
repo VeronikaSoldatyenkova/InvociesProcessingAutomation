@@ -1,0 +1,18 @@
+<!-- automation_app/templates/automation_app/profile.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Profile</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Update Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
