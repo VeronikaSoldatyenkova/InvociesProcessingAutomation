@@ -147,3 +147,63 @@ button, a.button {
 button:hover, a.button:hover {
     background-color: #45a049;
 }
+
+/* Register and Change Password Page Styles */
+form.register-form, form.change-password-form {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+form.register-form label, form.change-password-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form.register-form input, form.change-password-form input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form.register-form button, form.change-password-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form.register-form button:hover, form.change-password-form button:hover {
+    background-color: #45a049;
+}
+
+form.register-form a, form.change-password-form a {
+    color: #4CAF50;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+form.register-form a:hover, form.change-password-form a:hover {
+    text-decoration: underline;
+}
+
+form.register-form .helptext, form.change-password-form .helptext {
+    color: #555;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
