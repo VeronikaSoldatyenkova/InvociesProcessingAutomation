@@ -207,3 +207,103 @@ form.register-form .helptext, form.change-password-form .helptext {
     font-size: 0.9em;
     margin-bottom: 20px;
 }
+
+
+
+
+
+/* Fade-in effect for the entire form-container */
+.form-container {
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Typewriter effect for the welcome message */
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #333;
+
+    width: 0;
+    /* We'll assume a max length of 30 characters "Welcome username" might be shorter.
+       Adjust steps and ch as needed. */
+    animation: typing 2s steps(10, end) forwards, blink-caret 1s step-end infinite;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 25ch; } /* enough room for "Welcome username" */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #333; }
+}
+
+/* Hover scaling for automation list items */
+.automations-list li {
+    transition: transform 0.3s ease-in-out;
+}
+
+.automations-list li:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+/* Round Button Slider */
+.rotating-slider {
+    position: relative;
+    height: 60px; /* Height of a single button */
+    width: 300px;
+    margin: 2em auto;
+    overflow: hidden; /* Hide non-active buttons */
+}
+
+.rotating-slider ul.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s ease-in-out; /* Smooth scroll effect */
+}
+
+.rotating-slider ul.slides li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Match slider height */
+    text-align: center;
+    margin: 0;
+}
+
+.rotating-slider ul.slides li a.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.rotating-slider ul.slides li a.button:hover {
+    background-color: #45a049;
+}
+

@@ -1,4 +1,3 @@
-<!-- automation_app/templates/automation_app/home.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,25 +5,91 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <style>
+        /* Round Button Slider */
+.rotating-slider {
+    position: relative;
+    height: 60px; /* Height of a single button */
+    width: 300px;
+    margin: 2em auto;
+    overflow: hidden; /* Hide non-active buttons */
+}
+
+.rotating-slider ul.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s ease-in-out; /* Smooth scroll effect */
+}
+
+.rotating-slider ul.slides li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Match slider height */
+    text-align: center;
+    margin: 0;
+}
+
+.rotating-slider ul.slides li a.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.rotating-slider ul.slides li a.button:hover {
+    background-color: #45a049;
+}
+
+    </style>
     <script>
-        function runAutomation(automationId) {
-            $.ajax({
-                url: `/automation/run_automation/${automationId}/`,
-                type: 'GET',
-                success: function(response) {
-                    alert('Automation triggered successfully.');
-                },
-                error: function(response) {
-                    alert('Failed to trigger automation.');
-                }
-            });
+$(document).ready(function () {
+    const $slider = $('.rotating-slider ul.slides');
+    const slideHeight = $('.rotating-slider').height(); // Height of a single button
+    let currentIndex = 0;
+    const totalSlides = $slider.children('li').length;
+
+    // Function to update the slider position
+    function updateSlider() {
+        $slider.css('transform', `translateY(-${currentIndex * slideHeight}px)`);
+    }
+
+    // Scroll event for navigating the buttons
+    $('.rotating-slider').on('wheel', function (e) {
+        if (e.originalEvent.deltaY > 0) {
+            // Scroll down
+            currentIndex = (currentIndex + 1) % totalSlides;
+        } else {
+            // Scroll up
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
         }
-    </script>
+        updateSlider();
+    });
+
+    // Initial position
+    updateSlider();
+});
+</script>
+
 </head>
 <body>
-    <h1>Welcome {{ user.username }}</h1>
+    <div class="typewriter">
+        <h1>Welcome {{ user.username }}</h1>
+    </div>
     <h2>Your Automations</h2>
-    <ul>
+    <ul class="automations-list">
         {% for user_automation in user_automations %}
         <li>
             <span>{{ user_automation.automation.name }} - {{ user_automation.automation.automation_type.name }}</span>
@@ -36,9 +101,16 @@
         </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'add_automation' %}" class="button">Add New Automation</a>
-    <a href="{% url 'profile' %}" class="button">Update Profile</a>
-    <a href="{% url 'change_password' %}" class="button">Change Password</a>
-    <a href="{% url 'logout' %}" class="button">Logout</a>
+
+<!-- Round Button Slider -->
+<div class="rotating-slider">
+    <ul class="slides">
+        <li><a href="{% url 'add_automation' %}" class="button"><span>Add New Automation</span></a></li>
+        <li><a href="{% url 'profile' %}" class="button"><span>Update Profile</span></a></li>
+        <li><a href="{% url 'change_password' %}" class="button"><span>Change Password</span></a></li>
+        <li><a href="{% url 'logout' %}" class="button"><span>Logout</span></a></li>
+    </ul>
+</div>
+
 </body>
 </html>
